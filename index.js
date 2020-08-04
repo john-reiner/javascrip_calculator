@@ -73,8 +73,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 updateDisplay()
             
             } else if (button === '+' || button === '-' || button === 'x' || button === '÷'){
+                calculate()
                 opperation = button
-                console.log(calculate())
             } else {
                 enteredNums.push(button)
                 updateDisplay() 
