@@ -16,22 +16,49 @@ window.addEventListener('DOMContentLoaded', (event) => {
         })
     }
 
+    let enteredNums = []
+    let numsToCalc = []
+    let opperation = ''
+
     const calculate = () => {
-        let number = 
-        displayArray.forEach(value => {
-
-            if (value === '+/-' || value === '%' || value === '÷' || value === 'x' || value === '-' || value === '+') {
-                console.log('found: ', value)
-            } 
-        })
+        let numString = enteredNums.join('')
+        let num = +numString
+        numsToCalc.push(num)
+        enteredNums = []
+        let returnedNum
+        if (numsToCalc.length === 2) {
+            if (opperation === '+') {
+                returnedNum = numsToCalc[0] + numsToCalc[1]
+                display.innerText = returnedNum
+                numsToCalc = [returnedNum]
+            }
+            if (opperation === '-') {
+                returnedNum = numsToCalc[0] - numsToCalc[1]
+                display.innerText = returnedNum 
+                numsToCalc = [returnedNum]
+            }
+            if (opperation === 'x') {
+                returnedNum = numsToCalc[0] * numsToCalc[1]
+                display.innerText = returnedNum 
+                numsToCalc = [returnedNum]
+            }
+            if (opperation === '÷') {
+                returnedNum = numsToCalc[0] / numsToCalc[1]
+                display.innerText = returnedNum 
+                numsToCalc = [returnedNum]
+            }
+        } else {
+            null
+        }
+        console.log(numsToCalc)
     }
+// check numstocalc, ask if length is = 2, if yes: calculate two numbers
 
 
 
-    let displayArray = []
 
     const updateDisplay = () => {
-        let displayToShow = displayArray.join('')
+        let displayToShow = enteredNums.join('')
         display.innerText = displayToShow
     }
 
@@ -40,12 +67,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let button = event.target.innerText
             if (button === '=') {
                 calculate()
-                
-            } else if (button !== 'ac') {
-                displayArray.push(button)
-                updateDisplay()             
+            } else if (button === 'ac') {
+                numsToCalc = []
+                enteredNums = []
+                updateDisplay()
+            
+            } else if (button === '+' || button === '-' || button === 'x' || button === '÷'){
+                opperation = button
+                console.log(calculate())
             } else {
-                displayArray = []
+                enteredNums.push(button)
+                updateDisplay() 
             }
         }
     })
