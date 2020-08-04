@@ -14,5 +14,31 @@ body {
     border: white solid 1px;
     width: 90%;
     margin: 30px auto;
-    height: 100px;
+    height: 180px;
+}
+
+#buttons {
+    border: white solid 1px;
+    width: 90%;
+    margin: 10px auto;
+    height: 336px;
+    display: flex;
+    flex-wrap: wrap;
+}
+#buttons > .button {
+    width: 70px;
+    margin: 2px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+}
+
+
+.button {
+    color: white;
+    border: white solid 1px;
+    /* height: 60px; */
+
+    border-radius: 100%;
+    align-items: center;
 }
