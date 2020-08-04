@@ -19,6 +19,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let enteredNums = []
     let numsToCalc = []
     let opperation = ''
+    let mutation = ''
+
+    const mutateNum = () => {
+        let numString = enteredNums.join('')
+        let num = +numString
+        if (mutation === '+/-') {
+            num = ~num + 1
+            display.innerText = num
+            numsToCalc = [num]
+            console.log(numsToCalc)
+        }
+        numsToCalc.push(num)
+    }
 
     const calculate = () => {
         let numString = enteredNums.join('')
@@ -75,9 +88,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (button === '+' || button === '-' || button === 'x' || button === '÷'){
                 calculate()
                 opperation = button
-            } else {
+            } else if (button === '+/-' || button === '%') {
+                mutation = button
+                console.log(mutation)
+                mutateNum()
+            } else  {
                 enteredNums.push(button)
-                updateDisplay() 
+                updateDisplay()    
             }
         }
     })
