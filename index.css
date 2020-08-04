@@ -1,0 +1,18 @@
+body {
+    background-color: aqua;
+}
+
+#main-container {
+    border: black solid 1px;
+    width: 380px;
+    height: 600px;
+    border-radius: 20px;
+    background-color: black;
+}
+
+#display {
+    border: white solid 1px;
+    width: 90%;
+    margin: 30px auto;
+    height: 100px;
+}
