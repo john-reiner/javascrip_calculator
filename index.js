@@ -11,10 +11,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const renderButtons = () => {
         
         calculator.buttons.map(button => {
-            div = document.createElement('div')
-            div.className = 'button'
-            div.innerText = button
-            buttonContainer.appendChild(div)
+            if (button === 0) {
+                div = document.createElement('div')
+                div.className = 'button'
+                // div.style.width = '114px'
+                div.style.paddingRight = '58px'
+                div.innerText = button
+                buttonContainer.appendChild(div)
+            } else if (button === "÷" || button === "x" || button === "-" || button === "+" || button === "=") {
+                div = document.createElement('div')
+                div.className = 'button'
+                div.style.backgroundColor = 'rgb(255, 160, 10)'
+                div.innerText = button
+                buttonContainer.appendChild(div)
+            } else if (button === '+/-' || button === '%' || button === 'ac') {
+                div = document.createElement('div')
+                div.className = 'button'
+                div.style.backgroundColor = 'rgb(105, 106, 108)'
+                div.innerText = button
+                buttonContainer.appendChild(div)
+            } else {
+                div = document.createElement('div')
+                div.className = 'button'
+                div.innerText = button
+                buttonContainer.appendChild(div)                
+            }
+
         })
     }
 
@@ -99,7 +121,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 opperation = button
             } else if (button === '+/-' || button === '%') {
                 if (button === '+/-' && enteredNums.length > 0) {
-                    
+
                 }
             } else  {
 

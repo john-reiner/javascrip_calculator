@@ -1,6 +1,7 @@
 
 
 #main-container {
+    font-family: 'Montserrat', sans-serif;
     border: black solid 1px;
     width: 232px;
     height: 320px;
@@ -14,7 +15,10 @@
     margin-top: 20px;
     height: 55px;
     color: white;
-    
+    font-size: 40px;
+    direction: rtl;
+    position: relative;
+    right: 18px;
 }
 
 #buttons {
@@ -26,6 +30,7 @@
     align-content: stretch;
     /* justify-content: center; */
 }
+
 #buttons > .button {
     color: white;
     border: rgb(82, 84, 88) solid 1px;
@@ -35,5 +40,7 @@
     line-height: 60px;
     font-size: 20px;
 }
+
+
 
 
