@@ -61,14 +61,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 numsToCalc = [returnedNum]
             }
         } else {
-            null
+            numsToCalc = [num]
+            console.log(numsToCalc)
         }
-        console.log(numsToCalc)
     }
-// check numstocalc, ask if length is = 2, if yes: calculate two numbers
-
-
-
 
     const updateDisplay = () => {
         let displayToShow = enteredNums.join('')
@@ -80,6 +76,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let button = event.target.innerText
             if (button === '=') {
                 calculate()
+                console.log(numsToCalc)
             } else if (button === 'ac') {
                 numsToCalc = []
                 enteredNums = []
