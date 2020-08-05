@@ -4,8 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const display = document.getElementById('display')
 
     const calculator = {
-        buttons: ['ac','+/-', '%', '÷', 7,8,9,'x',4,5,6,'-',1,2,3,'+',0,'.','='],
-        
+        buttons: ['AC','+/-', '%', '÷', 7,8,9,'x',4,5,6,'-',1,2,3,'+',0,'.','='],
     }
 
     const renderButtons = () => {
@@ -14,7 +13,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             if (button === 0) {
                 div = document.createElement('div')
                 div.className = 'button'
-                // div.style.width = '114px'
                 div.style.paddingRight = '58px'
                 div.innerText = button
                 buttonContainer.appendChild(div)
@@ -24,7 +22,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 div.style.backgroundColor = 'rgb(255, 160, 10)'
                 div.innerText = button
                 buttonContainer.appendChild(div)
-            } else if (button === '+/-' || button === '%' || button === 'ac') {
+            } else if (button === '+/-' || button === '%' || button === 'AC') {
                 div = document.createElement('div')
                 div.className = 'button'
                 div.style.backgroundColor = 'rgb(105, 106, 108)'
@@ -111,17 +109,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let button = event.target.innerText
             if (button === '=') {
                 calculate()
-            } else if (button === 'ac') {
+            } else if (button === 'AC') {
                 numsToCalc = []
                 enteredNums = []
                 updateDisplay()
-            
             } else if (button === '+' || button === '-' || button === 'x' || button === '÷'){
                 calculate()
                 opperation = button
             } else if (button === '+/-' || button === '%') {
                 if (button === '+/-' && enteredNums.length > 0) {
-
+                    let numString = enteredNums.join('')
+                    let num = +numString
+                    num = ~num + 1
+                    display.innerText = num
+                    numsToCalc = [num]
                 }
             } else  {
 

@@ -7,10 +7,16 @@
     height: 320px;
     border-radius: 4px;
     background-color: rgba(99,99,99,.90);
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
 }
 
 #display {
-    /* border: white solid 1px; */
     width: 100%;
     margin-top: 20px;
     height: 55px;
@@ -22,13 +28,9 @@
 }
 
 #buttons {
-    /* width: 90%; */
-    /* margin: auto; */
-    /* height: 300px; */
     display: flex;
     flex-wrap: wrap;
     align-content: stretch;
-    /* justify-content: center; */
 }
 
 #buttons > .button {
@@ -39,6 +41,10 @@
     text-align: center;
     line-height: 60px;
     font-size: 20px;
+}
+
+.button:active {
+    background-color: royalblue;
 }
 
 
