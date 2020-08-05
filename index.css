@@ -18,18 +18,19 @@
 }
 
 #buttons {
-    width: 90%;
+    /* width: 90%; */
     /* margin: auto; */
     /* height: 300px; */
     display: flex;
     flex-wrap: wrap;
+    align-content: stretch;
     /* justify-content: center; */
 }
 #buttons > .button {
     color: white;
     border: rgb(82, 84, 88) solid 1px;
-    width: 50px;
-    height: 45px;
+    width: 56px;
+    height: 47px;
     text-align: center;
     line-height: 60px;
     font-size: 20px;
