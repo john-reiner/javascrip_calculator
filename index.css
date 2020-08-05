@@ -1,46 +1,38 @@
-body {
-    background-color: aqua;
-}
+
 
 #main-container {
     border: black solid 1px;
-    width: 380px;
-    height: 600px;
-    border-radius: 20px;
-    background-color: black;
+    width: 232px;
+    height: 320px;
+    border-radius: 4px;
+    background-color: rgba(99,99,99,.90);
 }
 
 #display {
-    border: white solid 1px;
-    width: 90%;
-    margin: 30px auto;
-    height: 180px;
+    /* border: white solid 1px; */
+    width: 100%;
+    margin-top: 20px;
+    height: 55px;
     color: white;
     
 }
 
 #buttons {
-    border: white solid 1px;
     width: 90%;
-    margin: 10px auto;
-    height: 336px;
+    /* margin: auto; */
+    /* height: 300px; */
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: center; */
 }
 #buttons > .button {
-    width: 70px;
-    margin: 2px;
+    color: white;
+    border: rgb(82, 84, 88) solid 1px;
+    width: 50px;
+    height: 45px;
     text-align: center;
     line-height: 60px;
     font-size: 20px;
 }
 
 
-.button {
-    color: white;
-    border: white solid 1px;
-    /* height: 60px; */
-
-    border-radius: 100%;
-    align-items: center;
-}

@@ -98,11 +98,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 calculate()
                 opperation = button
             } else if (button === '+/-' || button === '%') {
-                mutation = button
-
-                mutateNum()
+                if (button === '+/-' && enteredNums.length > 0) {
+                    
+                }
             } else  {
-                
+
                 enteredNums.push(+button)
                 updateDisplay()    
             }
