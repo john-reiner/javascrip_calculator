@@ -117,6 +117,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     display.innerText = num
                     numsToCalc = [num]
                 }
+            } else if (button === ".") {
+                enteredNums.push(button)
             } else  {
                 enteredNums.push(+button)
                 updateDisplay()

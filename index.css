@@ -65,13 +65,6 @@
 }
 
 .button:active {
-    background-color: black;
+    background-color: grey;
 }
 
-.option-button:active {
-    background-color: black;
-}
-
-.calculate-button:active {
-    background-color: black;
-}
