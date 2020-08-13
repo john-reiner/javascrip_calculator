@@ -19,13 +19,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (button === "÷" || button === "x" || button === "-" || button === "+" || button === "=") {
                 div = document.createElement('div')
                 div.className = 'button'
-                div.style.backgroundColor = 'rgb(255, 160, 10)'
+                div.style.backgroundColor = 'royalBlue'
                 div.innerText = button
                 buttonContainer.appendChild(div)
             } else if (button === '+/-' || button === '%' || button === 'AC') {
                 div = document.createElement('div')
                 div.className = 'button'
-                div.style.backgroundColor = 'rgb(105, 106, 108)'
+                div.style.backgroundColor = 'cornflowerBlue'
                 div.innerText = button
                 buttonContainer.appendChild(div)
             } else {
@@ -34,63 +34,56 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 div.innerText = button
                 buttonContainer.appendChild(div)                
             }
-
         })
     }
 
     let enteredNums = []
     let numsToCalc = []
     let opperation = ''
-    let mutation = ''
-
-    const mutateNum = () => {
-        let numString = enteredNums.join('')
-        let num = +numString
-        if (mutation === '+/-') {
-            num = ~num + 1
-            display.innerText = num
-            numsToCalc = [num]
-        }
-        numsToCalc.push(num)
-    }
 
     const calculate = () => {
         
         if (enteredNums.length === 0) {
-            numsToCalc = [0]
             return
         } else {
             let num = +enteredNums.join('')
             numsToCalc.push(num)
             enteredNums = []
-            let returnedNum;
             if (numsToCalc.length === 2) {
-                if (opperation === '+') {
-                    returnedNum = numsToCalc[0] + numsToCalc[1]
-                    display.innerText = returnedNum
-                    numsToCalc = [returnedNum]
+                console.log("Calculating: ",opperation, numsToCalc)
+                switch (opperation) {
+                    
+                    case '+':
+                        returnedNum = numsToCalc[0] + numsToCalc[1]
+                        display.innerText = returnedNum
+                        numsToCalc = [returnedNum]
+                        console.log(numsToCalc)
+                        // enteredNums = [returnedNum]
+                        break;
+                    case '-':
+                        returnedNum = numsToCalc[0] - numsToCalc[1]
+                        display.innerText = returnedNum 
+                        numsToCalc = [returnedNum]
+                        break;
+                    case 'x': 
+                        returnedNum = numsToCalc[0] * numsToCalc[1]
+                        display.innerText = returnedNum 
+                        numsToCalc = [returnedNum]
+                        break;
+                    case '÷':
+                        returnedNum = numsToCalc[0] / numsToCalc[1]
+                        display.innerText = returnedNum 
+                        numsToCalc = [returnedNum]
+                        break;
+                    default:
+                        numsToCalc = [num]
+                        console.log("DEFAULT! numsToCalc: ", numsToCalc)
+                        break;
                 }
-                if (opperation === '-') {
-                    returnedNum = numsToCalc[0] - numsToCalc[1]
-                    display.innerText = returnedNum 
-                    numsToCalc = [returnedNum]
-                }
-                if (opperation === 'x') {
-                    returnedNum = numsToCalc[0] * numsToCalc[1]
-                    display.innerText = returnedNum 
-                    numsToCalc = [returnedNum]
-                }
-                if (opperation === '÷') {
-                    returnedNum = numsToCalc[0] / numsToCalc[1]
-                    display.innerText = returnedNum 
-                    numsToCalc = [returnedNum]
-                }
-                if (opperation === '') {
-                    numsToCalc = [num]
-                }
-            } else {
-                numsToCalc = [num]
+            }  else {
+                console.log('less than 2 numbers are logged', numsToCalc)                
             }
+
         }
     }
 
@@ -102,16 +95,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-
-
     buttonContainer.addEventListener('click', (event) => {
         if (event.target.className === 'button') {
             let button = event.target.innerText
             if (button === '=') {
                 calculate()
+                opperation = button
             } else if (button === 'AC') {
                 numsToCalc = []
                 enteredNums = []
+                opperation = ''
                 updateDisplay()
             } else if (button === '+' || button === '-' || button === 'x' || button === '÷'){
                 calculate()
@@ -125,12 +118,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     numsToCalc = [num]
                 }
             } else  {
-
                 enteredNums.push(+button)
-                updateDisplay()    
+                updateDisplay()
             }
         }
     })
+
     renderButtons()
     updateDisplay()
+
 })

@@ -42,11 +42,36 @@
     line-height: 60px;
     font-size: 20px;
 }
-
-.button:active {
+#buttons > .calculate-button {
     background-color: royalblue;
+    color: white;
+    border: rgb(82, 84, 88) solid 1px;
+    width: 56px;
+    height: 47px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
 }
 
+#buttons > .option-button {
+    background-color: #333;
+    color: white;
+    border: rgb(82, 84, 88) solid 1px;
+    width: 56px;
+    height: 47px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+}
 
+.button:active {
+    background-color: black;
+}
 
+.option-button:active {
+    background-color: black;
+}
 
+.calculate-button:active {
+    background-color: black;
+}
