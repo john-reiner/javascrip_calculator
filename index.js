@@ -7,6 +7,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         buttons: ['AC','+/-', '%', '÷', 7,8,9,'x',4,5,6,'-',1,2,3,'+',0,'.','='],
     }
 
+    const createButton = (button) => {
+        div = document.createElement('div')
+        div.className = 'button'
+        div.innerText = button
+        buttonContainer.appendChild(div)
+    }
+
     const renderButtons = () => {
         
         calculator.buttons.map(button => {
@@ -29,10 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 div.innerText = button
                 buttonContainer.appendChild(div)
             } else {
-                div = document.createElement('div')
-                div.className = 'button'
-                div.innerText = button
-                buttonContainer.appendChild(div)                
+                createButton(button)
             }
         })
     }
@@ -50,14 +54,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             numsToCalc.push(num)
             enteredNums = []
             if (numsToCalc.length === 2) {
-                console.log("Calculating: ",opperation, numsToCalc)
                 switch (opperation) {
-                    
                     case '+':
                         returnedNum = numsToCalc[0] + numsToCalc[1]
                         display.innerText = returnedNum
                         numsToCalc = [returnedNum]
-                        console.log(numsToCalc)
                         // enteredNums = [returnedNum]
                         break;
                     case '-':
@@ -72,56 +73,97 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         break;
                     case '÷':
                         returnedNum = numsToCalc[0] / numsToCalc[1]
-                        display.innerText = returnedNum 
+                        if (returnedNum.toString().length > 8) {
+                            display.style.fontSize = "20px"
+                            display.innerText = returnedNum
+                        }
+                        display.innerText = returnedNum
+
                         numsToCalc = [returnedNum]
                         break;
                     default:
                         numsToCalc = [num]
-                        console.log("DEFAULT! numsToCalc: ", numsToCalc)
                         break;
                 }
-            }  else {
-                console.log('less than 2 numbers are logged', numsToCalc)                
             }
-
         }
     }
 
     const updateDisplay = () => {
         if (enteredNums.length === 0) {
+            display.style.fontSize = "40px"
             display.innerText = 0
         } else {
-            display.innerText = +enteredNums.join('')
+            displayNum = enteredNums.join('')
+            console.log(displayNum)
+            if (displayNum.length > 8) {
+                display.style.fontSize = "20px"
+                display.innerText = displayNum
+            } else {
+                display.style.fontSize = "40px"
+            }
+            display.innerText = displayNum
         }
     }
+
+    const signedNumber = () => {
+        let num = +enteredNums.join('')
+        let negNum = ~num + 1
+        enteredNums = [negNum]
+        updateDisplay()
+        
+    }
+
+    const precentNumb = () => {
+        let num = +enteredNums.join('')
+        let percentNumber = num / 100
+        enteredNums = [percentNumber]
+        console.log(enteredNums)
+        updateDisplay()
+    }
+    
 
     buttonContainer.addEventListener('click', (event) => {
         if (event.target.className === 'button') {
             let button = event.target.innerText
-            if (button === '=') {
-                calculate()
-                opperation = button
-            } else if (button === 'AC') {
-                numsToCalc = []
-                enteredNums = []
-                opperation = ''
-                updateDisplay()
-            } else if (button === '+' || button === '-' || button === 'x' || button === '÷'){
-                calculate()
-                opperation = button
-            } else if (button === '+/-' || button === '%') {
-                if (button === '+/-' && enteredNums.length > 0) {
-                    let numString = enteredNums.join('')
-                    let num = +numString
-                    num = ~num + 1
-                    display.innerText = num
-                    numsToCalc = [num]
-                }
-            } else if (button === ".") {
-                enteredNums.push(button)
-            } else  {
-                enteredNums.push(+button)
-                updateDisplay()
+            switch (button) {
+                case '=':
+                    calculate()
+                    opperation = button                 
+                    break;
+                case 'AC':
+                    numsToCalc = []
+                    enteredNums = []
+                    opperation = ''
+                    updateDisplay()
+                    break;
+                case '+':
+                    calculate()
+                    opperation = button
+                case '-':
+                    calculate()
+                    opperation = button
+                case 'x':
+                    calculate()
+                    opperation = button
+                case '÷':
+                    calculate()
+                    opperation = button
+                    break
+                case '+/-':
+                    signedNumber()
+                    break
+                case '%':
+                    precentNumb()
+                    break
+                case '.':
+                    enteredNums.push(button)
+                    updateDisplay()
+                    break 
+                default:
+                    enteredNums.push(+button)
+                    updateDisplay()
+                    break;
             }
         }
     })

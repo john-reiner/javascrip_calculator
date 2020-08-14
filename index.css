@@ -22,9 +22,11 @@
     height: 55px;
     color: white;
     font-size: 40px;
-    direction: rtl;
+    text-align: right;
+    margin-right: 50px;
+    /* direction: rtl; */
     position: relative;
-    right: 18px;
+    right: 15px;
 }
 
 #buttons {
