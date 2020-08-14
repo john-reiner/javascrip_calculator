@@ -2,39 +2,32 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const buttonContainer = document.getElementById('buttons')
     const display = document.getElementById('display')
+    
 
     const calculator = {
         buttons: ['AC','+/-', '%', '÷', 7,8,9,'x',4,5,6,'-',1,2,3,'+',0,'.','='],
     }
 
-    const createButton = (button) => {
+    const createButton = (button, stretch = false, backgroundColor = '', id = false) => {
         div = document.createElement('div')
         div.className = 'button'
+        id = true ? div.id = button : null
+        stretch === true ? div.style.paddingRight = '58px' : null
+        div.style.backgroundColor = backgroundColor
         div.innerText = button
         buttonContainer.appendChild(div)
     }
 
     const renderButtons = () => {
-        
         calculator.buttons.map(button => {
             if (button === 0) {
-                div = document.createElement('div')
-                div.className = 'button'
-                div.style.paddingRight = '58px'
-                div.innerText = button
-                buttonContainer.appendChild(div)
+                createButton(button, stretch = true)
             } else if (button === "÷" || button === "x" || button === "-" || button === "+" || button === "=") {
-                div = document.createElement('div')
-                div.className = 'button'
-                div.style.backgroundColor = 'royalBlue'
-                div.innerText = button
-                buttonContainer.appendChild(div)
-            } else if (button === '+/-' || button === '%' || button === 'AC') {
-                div = document.createElement('div')
-                div.className = 'button'
-                div.style.backgroundColor = 'cornflowerBlue'
-                div.innerText = button
-                buttonContainer.appendChild(div)
+                createButton(button, stretch = false, backgroundColor = 'royalBlue')
+            } else if (button === '+/-' || button === '%') {
+                createButton(button, stretch = false, backgroundColor = 'cornflowerBlue')
+            } else if (button === 'AC') {
+                createButton(button, stretch = false, backgroundColor = 'cornflowerBlue', id = true)
             } else {
                 createButton(button)
             }
@@ -43,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     let enteredNums = []
     let numsToCalc = []
-    let opperation = ''
+    let opperation = '' 
 
     const calculate = () => {
         
@@ -95,7 +88,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             display.innerText = 0
         } else {
             displayNum = enteredNums.join('')
-            console.log(displayNum)
             if (displayNum.length > 8) {
                 display.style.fontSize = "20px"
                 display.innerText = displayNum
@@ -118,12 +110,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let num = +enteredNums.join('')
         let percentNumber = num / 100
         enteredNums = [percentNumber]
-        console.log(enteredNums)
         updateDisplay()
     }
     
 
+    
+
     buttonContainer.addEventListener('click', (event) => {
+        const ac = document.getElementById('AC')
         if (event.target.className === 'button') {
             let button = event.target.innerText
             switch (button) {
@@ -131,12 +125,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     calculate()
                     opperation = button                 
                     break;
-                case 'AC':
+                case 'C':
                     numsToCalc = []
                     enteredNums = []
                     opperation = ''
                     updateDisplay()
+                    ac.innerText = 'AC'
                     break;
+                case 'AC':
+                    null
                 case '+':
                     calculate()
                     opperation = button
@@ -159,10 +156,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 case '.':
                     enteredNums.push(button)
                     updateDisplay()
+                    ac.innerText = 'C'
                     break 
                 default:
-                    enteredNums.push(+button)
-                    updateDisplay()
+                    if (enteredNums.length < 17) {
+                        enteredNums.push(+button)
+                        updateDisplay()
+                        ac.innerText = 'C'
+                    }
                     break;
             }
         }
